@@ -4,6 +4,9 @@ let prev = document.getElementById("prev");
 let forw = document.getElementById("forw");
 let title = document.getElementById("title");
 let rotate = document.getElementById("rotate");
+let progress = document.getElementById("progress");
+let duration = document.getElementById("duration");
+let current_time = document.getElementById("current_time");
 console.log(title);
 // console.log(play);
 // console.log(forw);
@@ -48,6 +51,11 @@ let songs = [
         artist1 : "Arijit Singh",
         name :"Music/music-2.mp3"
 
+    },
+    {
+        title1:"menang",
+        artist1 : "chinese",
+        name :"Music/music-3.mp3"
     }
 ];
 
@@ -80,4 +88,39 @@ prev.addEventListener("click" , ()  => {
     //music.pause();
 });
 
+function format(time) {   
+    // Hours, minutes and seconds
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+}
+
+
+
 // console.log(title);
+music.addEventListener("timeupdate" ,function(event){
+   console.log(event);
+   const {currentTime,duration} = event.srcElement;
+//    let currenttime = parseInt((currentTime%3600)/60);
+//    let totalduration = parseInt(duration);
+
+   console.log(currentTime);
+  
+
+//    duration.textContent = currenttime;
+//    current_time.textContent = totalduration;
+   document.getElementById("current_time").innerHTML = format(currentTime);
+   document.getElementById("duration").innerHTML = format(duration);
+    let progress_width = (currentTime/duration)*100;
+    progress.style.width = `${progress_width}%`;
+
+});
