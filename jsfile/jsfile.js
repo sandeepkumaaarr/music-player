@@ -7,6 +7,7 @@ let rotate = document.getElementById("rotate");
 let progress = document.getElementById("progress");
 let duration = document.getElementById("duration");
 let current_time = document.getElementById("current_time");
+const progress_div = document.getElementById("progress_div");
 console.log(title);
 // console.log(play);
 // console.log(forw);
@@ -54,7 +55,7 @@ let songs = [
     },
     {
         title1:"menang",
-        artist1 : "chinese",
+        artist1  : "chinese",
         name :"Music/music-3.mp3"
     }
 ];
@@ -108,12 +109,12 @@ function format(time) {
 
 // console.log(title);
 music.addEventListener("timeupdate" ,function(event){
-   console.log(event);
+//    console.log(event);
    const {currentTime,duration} = event.srcElement;
 //    let currenttime = parseInt((currentTime%3600)/60);
 //    let totalduration = parseInt(duration);
 
-   console.log(currentTime);
+//    console.log(currentTime);
   
 
 //    duration.textContent = currenttime;
@@ -123,4 +124,23 @@ music.addEventListener("timeupdate" ,function(event){
     let progress_width = (currentTime/duration)*100;
     progress.style.width = `${progress_width}%`;
 
+});
+
+music.addEventListener("ended",()=>{
+    nxt = (nxt + 1) % songs.length; 
+    loadSong(songs[nxt]);
+    playMusic();
+});
+
+progress_div.addEventListener("click",(event)=>{
+    console.log(event);
+    // const {clientWidth} = event.srcElement;
+    // console.log(clientWidth);
+    // const {offsetX} = event;
+    // console.log(offsetX);
+    const {currentTime,duration} =music;
+    let widthper = (event.offsetX/event.srcElement.clientWidth)*duration;
+    console.log(widthper);
+    progress.style.width = widthper+"%";
+    music.currentTime = widthper;
 });
