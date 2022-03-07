@@ -41,12 +41,12 @@ let songs = [
     {
         title1 : "Dola ni aaya",
         artist1 : "B prake",
-        name :"music-1.mp3"
+        name :"Music/music-1.mp3"
     },
     {
         title1 : "Raaste se tha",
         artist1 : "Arijit Singh",
-        name :"music-2.mp3"
+        name :"Music/music-2.mp3"
 
     }
 ];
