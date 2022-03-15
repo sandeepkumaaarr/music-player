@@ -8,15 +8,16 @@ let progress = document.getElementById("progress");
 let duration = document.getElementById("duration");
 let current_time = document.getElementById("current_time");
 const progress_div = document.getElementById("progress_div");
-console.log(title);
+console.dir(title);
+console.log(window)
 // console.log(play);
 // console.log(forw);
-console.log(music);
+console.dir(music);
 let artist = document.getElementById("artist");
 
 
 
-let isPlay = true;
+let isPlay = false;
 play.addEventListener("click" , ()  => {
     if(isPlay){
         pauseMusic();
@@ -45,18 +46,18 @@ let songs = [
     {
         title1 : "Dola ni aaya",
         artist1 : "B prake",
-        name :"Music/music-1.mp3"
+        name :"music-1.mp3"
     },
     {
         title1 : "Raaste se tha",
         artist1 : "Arijit Singh",
-        name :"Music/music-2.mp3"
+        name :"music-2.mp3"
 
     },
     {
         title1:"menang",
         artist1  : "chinese",
-        name :"Music/music-3.mp3"
+        name :"music-3.mp3"
     }
 ];
 
@@ -65,7 +66,7 @@ function loadSong(songs){
     title.textContent = songs.title1;
     artist.textContent = songs.artist1; 
     // console.log(title);
-    music.src =  songs.name;
+    music.src =  "Music/"+songs.name;
     music.textContent = songs.name;
 }
 // console.log(title);
@@ -123,7 +124,6 @@ music.addEventListener("timeupdate" ,function(event){
    document.getElementById("duration").innerHTML = format(duration);
     let progress_width = (currentTime/duration)*100;
     progress.style.width = `${progress_width}%`;
-
 });
 
 music.addEventListener("ended",()=>{
